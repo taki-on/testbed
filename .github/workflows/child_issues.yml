@@ -15,7 +15,7 @@ jobs:
         if: github.event.label.name == 'make-client'
         run: |
           gh issue create \
-            --repo 'taki-on/github_action_playground' \
+            --repo 'github.com/taki-on/github_action_playground' \
             --title '[subtask] ${{ github.event.issue.title }}' \
             --body 'Child task of ${{ github.event.issue.url }}' \
             --label '${{ join(github.event.issue.labels.*.name, ',') }}'
