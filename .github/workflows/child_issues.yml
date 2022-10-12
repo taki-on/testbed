@@ -14,10 +14,7 @@ jobs:
       - name: Create child issues
         if: github.event.label.name == 'make-client'
         run: |
-          echo "${{ github.event.issue.title }}"
-          echo "${{ github.event.issue.body }}"
-          echo "${{ github.event.issue.url }}"
-          echo "${{ join(github.event.issue.labels.*.name, ',') }}"
           gh issue create --title '[subtask] ${{ github.event.issue.title }}' --body 'Child task of ${{ github.event.issue.url }}' --label '${{ join(github.event.issue.labels.*.name, ',') }}'
+          gh issue edit ${{ github.event.issue.number }} --remove-label 'make-client'
           
           
