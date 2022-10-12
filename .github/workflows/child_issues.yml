@@ -12,14 +12,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Create child issues
+        env: 
+          LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
         if: github.event.label.name == 'make-client'
-        run: |
-          SOURCE_LABELS='${{ join(github.event.issue.labels.*.name, ',') }}'
-          LABELS=${SOURCE_LABELS/make-client/''}
-          gh issue create \
+        run: gh issue create \
             --title '[subtask] ${{ github.event.issue.title }}' \
             --body 'Child task of ${{ github.event.issue.url }}' \
-            --label $LABELS
+            --label '$LABELS'
 
           
           
