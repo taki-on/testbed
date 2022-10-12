@@ -17,9 +17,7 @@ jobs:
           BODY: 'Child task of ${{ github.event.issue.url }}'
           LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
         if: github.event.label.name == 'make-client'
-        run: |
-          sed "s/make-client/''/g" <<< "$LABELS" | xargs -I % echo "FINAL_LABELS=%" >> GITHUB_ENV
-          gh issue create --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL=%" >> $GITHUB_ENV
+        run: gh issue create --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL=%" >> $GITHUB_ENV
       - name: Update the parent issue
         if: github.event.label.name == 'make-client'
         run: gh issue edit ${{ github.event.issue.number }} --body "${{ github.event.issue.body }}\n\n- [ ] $CHILD_ISSUE_URL"
