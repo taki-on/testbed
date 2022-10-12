@@ -14,11 +14,12 @@ jobs:
       - name: Create child issues
         if: github.event.label.name == 'make-client'
         run: |
+          SOURCE_LABELS='${{ join(github.event.issue.labels.*.name, ',') }}'
+          LABELS=${SOURCE_LABELS/make-client/''}
           gh issue create \
-            --repo 'github.com/taki-on/github_action_playground' \
             --title '[subtask] ${{ github.event.issue.title }}' \
             --body 'Child task of ${{ github.event.issue.url }}' \
-            --label '${{ join(github.event.issue.labels.*.name, ',') }}'
+            --label $LABELS
 
           
           
