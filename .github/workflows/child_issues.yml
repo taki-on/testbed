@@ -18,7 +18,7 @@ jobs:
         run: gh issue create \
             --title '[subtask] ${{ github.event.issue.title }}' \
             --body 'Child task of ${{ github.event.issue.url }}' \
-            --label '$LABELS'
+            --label $LABELS
 
           
           
