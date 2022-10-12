@@ -14,6 +14,6 @@ jobs:
           echo "${{ github.event.issue.body }}"
           echo "${{ github.event.issue.url }}"
           echo "${{ join(github.event.issue.labels.*.name, ',') }}"
-          gh issue create --title '[subtask] ${{ github.event.issue.title }}' --body 'Child task of ${{ github.event.issue.url }}' --labels '${{ join(github.event.issue.labels.*.name, ',') }}'
+          gh issue create --title '[subtask] ${{ github.event.issue.title }}' --body 'Child task of ${{ github.event.issue.url }}' --label '${{ join(github.event.issue.labels.*.name, ',') }}'
           
           
