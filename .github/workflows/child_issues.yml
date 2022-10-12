@@ -22,7 +22,7 @@ jobs:
           echo "CHILD_ISSUE_URL=$URL" >> $GITHUB_ENV
       - name: Update the parent issue
         if: github.event.label.name == 'make-client'
-        run: gh issue edit ${{ github.event.issue.number }} --body "${{ github.event.issue.body }}\n\n<!-- DO NOT MODIFY: Begin auto-managed issue checklist -->\n\n- [ ] $CHILD_ISSUE_URL"
+        run: gh issue edit ${{ github.event.issue.number }} --body "${{ github.event.issue.body }}\n\n- [ ] $CHILD_ISSUE_URL"
 
           
           
