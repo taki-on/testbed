@@ -1,0 +1,11 @@
+name: Create child issues
+on:
+  issues:
+    types: [labeled]
+jobs:
+  build:
+    name: Create child issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "Test run"
