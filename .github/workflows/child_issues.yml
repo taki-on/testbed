@@ -13,6 +13,6 @@ jobs:
           echo "${{ github.event.issue.title }}"
           echo "${{ github.event.issue.body }}"
           echo "${{ github.event.issue.url }}"
-          echo "${{ github.event.issue.labels.*.name }}"
+          echo "${{ join(github.event.issue.labels.*.name, ',') }}"
           
           
