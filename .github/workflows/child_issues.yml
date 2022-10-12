@@ -17,7 +17,7 @@ jobs:
           BODY: 'Child task of ${{ github.event.issue.url }}'
           LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
         if: github.event.label.name == 'make-client'
-        run: gh issue create --title $TITLE --body $BODY --label $LABELS
+        run: gh issue create --title "$TITLE" --body "$BODY" --label "$LABELS"
 
           
           
