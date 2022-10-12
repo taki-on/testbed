@@ -6,6 +6,8 @@ jobs:
   build:
     name: Create child issues
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Create child issues
         if: github.event.label.name == 'make-client'
