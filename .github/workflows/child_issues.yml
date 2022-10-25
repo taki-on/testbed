@@ -21,7 +21,7 @@ jobs:
         if: github.event.label.name == 'make-client'
         run: gh issue create --repo 'github/mobile-android' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
       - name: Wait
-      - uses: jakejarvis/wait-action@master
+        uses: jakejarvis/wait-action@master
         with:
           time: '5s'
       - name: Create iOS child issue
