@@ -18,7 +18,7 @@ jobs:
       - name: Sanitize labels
         run: |
           FIRST_REMOVED=`echo ${SOURCE_LABELS/make-client,/}`
-          echo ${FIRST_REMOVED/make-client,/} | xargs -I % echo "LABELS=%" >> $GITHUB_ENV
+          echo ${FIRST_REMOVED/,make-client/} | xargs -I % echo "LABELS=%" >> $GITHUB_ENV
       - name: Create Android child issue
         if: github.event.label.name == 'make-client'
         run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
