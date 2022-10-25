@@ -19,14 +19,14 @@ jobs:
         run: echo ${${SOURCE_LABELS/make-client,/}/,make-client/} | xargs -I % echo "LABELS=%" >> $GITHUB_ENV
       - name: Create Android child issue
         if: github.event.label.name == 'make-client'
-        run: gh issue create --repo 'github/mobile-android' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
+        run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
       - name: Wait
         uses: jakejarvis/wait-action@master
         with:
           time: '5s'
       - name: Create iOS child issue
         if: github.event.label.name == 'make-client'
-        run: gh issue create --repo 'github/mobile-ios' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_IOS=%" >> $GITHUB_ENV
+        run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$LABELS" | xargs -I % echo "CHILD_ISSUE_URL_IOS=%" >> $GITHUB_ENV
       - name: Update the parent issue
         if: github.event.label.name == 'make-client'
         run: gh issue edit ${{ github.event.issue.number }} --body "${{ github.event.issue.body }}\n\n- [ ] $CHILD_ISSUE_URL_ANDROID\n\n- [ ] $CHILD_ISSUE_URL_IOS\n"
