@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import os, sys
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('input_labels', type=str, help='Input labels in a comma separated format')
+parser.add_argument('white_list', type=str, help='White-listed labels in a comma separated format')
+args = parser.parse_args()
+
+input_labels = set(args.input_labels.split(','))
+white_list = set(args.white_list.split(','))
+
+filtered_labels = input_labels & white_list
+print(','.join(str(label) for label in filtered_labels))
