@@ -7,7 +7,7 @@ env:
   TITLE: '[subtask] ${{ github.event.issue.title }}'
   BODY: 'Child task of ${{ github.event.issue.url }}'
   LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
-  WHITE_LISTED_LABELS: 'bug,Severity: 1,Severity: 2,Severity 3'
+  WHITE_LISTED_LABELS: 'bug,Severity: 1,Severity: 2,Severity: 3'
 
 jobs:
   client_repos:
