@@ -7,6 +7,7 @@ env:
   TITLE: '[subtask] ${{ github.event.issue.title }}'
   BODY: 'Child task of ${{ github.event.issue.url }}'
   LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+  WHITE_LISTED_LABELS: 'bug,Severity: 1, Severity: 2, Severity 3'
 
 jobs:
   client_repos:
@@ -15,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Filter white-listed labels
+        run: python3 tools/filter_labels $LABELS $WHITE_LISTED_LABELS
       - name: Create Android child issue
         if: github.event.label.name == 'make-client'
         run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
@@ -32,6 +35,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Filter white-listed labels
+        run: python3 tools/filter_labels $LABELS $WHITE_LISTED_LABELS
       - name: Create a child issue
         if: github.event.label.name == 'make-api'
         run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL=%" >> $GITHUB_ENV
