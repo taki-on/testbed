@@ -10,6 +10,7 @@ env:
   LABEL_ALLOW_LIST: 'bug,Severity: 1,Severity: 2,Severity: 3'
 permissions:
   issues: write
+  actions: read
 
 jobs:
   client_repos:
