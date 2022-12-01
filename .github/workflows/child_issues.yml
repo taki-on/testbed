@@ -2,8 +2,6 @@ name: Create child issues
 on:
   issues:
     types: [labeled]
-permissions:
-  issues: write
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   TITLE: '[subtask] ${{ github.event.issue.title }}'
@@ -13,6 +11,8 @@ env:
 
 jobs:
   client_repos:
+    permissions:
+      issues: write
     if: github.event.label.name == 'make-client'
     name: Create child issues in the client repos
     runs-on: ubuntu-latest
@@ -30,6 +30,8 @@ jobs:
           NEWLINE=$'\n'
           gh issue edit ${{ github.event.issue.number }} --body "${{ github.event.issue.body }}${NEWLINE}${NEWLINE}<hr />${NEWLINE}${NEWLINE}#### Generated child issues${NEWLINE}${NEWLINE}<!-- DO NOT MODIFY: Begin auto-managed issue checklist -->${NEWLINE}- [ ] $CHILD_ISSUE_URL_ANDROID${NEWLINE}- [ ] $CHILD_ISSUE_URL_IOS"
   api_repo:
+    permissions:
+      issues: write
     if: github.event.label.name == 'make-api'
     name: Create child issue in the api repo
     runs-on: ubuntu-latest
