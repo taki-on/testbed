@@ -7,7 +7,9 @@ env:
   TITLE: '[subtask] ${{ github.event.issue.title }}'
   BODY: 'Child task of ${{ github.event.issue.url }}'
   LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
-  WHITE_LISTED_LABELS: 'bug,Severity: 1,Severity: 2,Severity: 3'
+  LABEL_ALLOW_LIST: 'bug,Severity: 1,Severity: 2,Severity: 3'
+permissions:
+  issues: write
 
 jobs:
   client_repos:
@@ -17,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Filter white-listed labels
-        run: python3 tools/filter_labels "$LABELS" "$WHITE_LISTED_LABELS" | xargs -I % echo "FINAL_LABELS=%" >> $GITHUB_ENV
+        run: python3 tools/filter_labels "$LABELS" "$LABEL_ALLOW_LIST" | xargs -I % echo "FINAL_LABELS=%" >> $GITHUB_ENV
       - name: Create Android child issue
         if: github.event.label.name == 'make-client'
         run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL_ANDROID=%" >> $GITHUB_ENV
@@ -36,7 +38,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Filter white-listed labels
-        run: python3 tools/filter_labels "$LABELS" "$WHITE_LISTED_LABELS" | xargs -I % echo "FINAL_LABELS=%" >> $GITHUB_ENV
+        run: python3 tools/filter_labels "$LABELS" "$LABEL_ALLOW_LIST" | xargs -I % echo "FINAL_LABELS=%" >> $GITHUB_ENV
       - name: Create a child issue
         if: github.event.label.name == 'make-api'
         run: gh issue create --repo 'taki-on/testbed' --title "$TITLE" --body "$BODY" --label "$FINAL_LABELS" | xargs -I % echo "CHILD_ISSUE_URL=%" >> $GITHUB_ENV
