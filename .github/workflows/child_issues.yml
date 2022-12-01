@@ -2,15 +2,14 @@ name: Create child issues
 on:
   issues:
     types: [labeled]
+permissions:
+  issues: write
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   TITLE: '[subtask] ${{ github.event.issue.title }}'
   BODY: 'Child task of ${{ github.event.issue.url }}'
   LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
   LABEL_ALLOW_LIST: 'bug,Severity: 1,Severity: 2,Severity: 3'
-permissions:
-  issues: write
-  actions: read
 
 jobs:
   client_repos:
