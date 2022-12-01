@@ -8,6 +8,8 @@ env:
   BODY: 'Child task of ${{ github.event.issue.url }}'
   LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
   WHITE_LISTED_LABELS: 'bug,Severity: 1,Severity: 2,Severity: 3'
+permissions:
+  issues: write
 
 jobs:
   client_repos:
