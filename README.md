@@ -13,3 +13,5 @@ chrome_yomichan-dictionaries複合語起源.tsv_at_master_·_MarvNC_2022-08-22_1
 ![image](chrome_yomichan-dictionaries複合語起源.tsv_at_master_·_MarvNC_2022-08-22_12-37-52.png.png)
 
 Added a USDZ model.
+
+kj
