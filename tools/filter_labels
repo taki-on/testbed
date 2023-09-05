@@ -13,3 +13,5 @@ white_list = set(args.white_list.split(','))
 
 filtered_labels = input_labels & white_list
 print(','.join(str(label) for label in filtered_labels))
+
+MOD
