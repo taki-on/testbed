@@ -1,0 +1,16 @@
+on:
+  pull_request:
+    paths:
+      - /tools
+  push:
+    paths:
+      - /tools
+
+name: Assign design reviewers
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assigne design reviewers
+        run: gh pr edit --add-assignee taki-on
