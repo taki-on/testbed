@@ -1,10 +1,10 @@
 on:
   pull_request:
     paths:
-      - /tools
+      - /tools/**
   push:
     paths:
-      - /tools
+      - /tools/**
 
 name: Assign design reviewers
 jobs:
