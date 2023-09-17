@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Assigne design reviewers
-        run: gh pr edit ${{ github.event.pull_request.head.ref }} --add-assignee taki-on
+        run: gh pr edit ${{ github.event.pull_request.head.ref }} --add-reviewer taki-on
