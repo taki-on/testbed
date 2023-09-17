@@ -13,8 +13,5 @@ jobs:
   assign:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
       - name: Assigne design reviewers
-        run: gh pr edit --add-assignee taki-on
+        run: gh pr edit ${{ github.ref }} --add-assignee taki-on
