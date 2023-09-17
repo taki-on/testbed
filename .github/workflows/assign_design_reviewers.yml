@@ -2,9 +2,6 @@ on:
   pull_request:
     paths:
       - tools/**
-  push:
-    paths:
-      - tools/**
 
 name: Assign design reviewers
 env:
