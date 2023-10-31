@@ -4,5 +4,3 @@ def main():
     pass
     
 main()
-
-# TEST
