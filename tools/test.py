@@ -1,4 +1,5 @@
+import os, sys
+
 def main():
-    print("Hello World!")
-    
-main()
+    pass
+
