@@ -1,0 +1,15 @@
+on:
+  pull_request:
+    paths:
+      - tools/**
+
+name: Assign design reviewers
+env:
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assigne design reviewers
+        run: gh pr edit ${{ github.event.pull_request.head.ref }} --add-reviewer taki-on
